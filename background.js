@@ -20,14 +20,14 @@ function buttonClicked(tab) {
 
 function gotMessage(message, sender, sendResponse){
   console.log(message);
-  var blob = new Blob([message.title,'\n', message.company,'\n', message.location, '\n', '\n','\n', message.description], {type: "text/plain"});
+  var blob = new Blob([message.title,'\n', message.company,'\n', message.location, '\n', message.URL, '\n','\n', message.description], {type: "text/plain"});
   var url = URL.createObjectURL(blob);
   var date = new Date();
   var month = date.getUTCMonth() + 1;
   var day = date.getUTCDate();
   var year = date.getUTCFullYear();
   var time = month + '-' + day + '-' + year;
-  var file_name = message.company + '-' + message.title + time +'.txt';
+  var file_name = message.company + '-' + time +'.txt';
   chrome.downloads.download({
     url: url,
     filename: file_name // Optional
