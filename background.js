@@ -30,7 +30,7 @@ function gotMessage(message, sender, sendResponse){
   var file_name = message.company + '-' + time +'.txt';
   chrome.downloads.download({
     url: url,
-    filename: file_name // Optional
+    filename: 'job-applications/' + file_name // Optional
   });
 }
 //message.title,'\n', message.company,'\n', message.location, '\n', '\n','\n', message.description

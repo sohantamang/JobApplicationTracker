@@ -18,30 +18,28 @@ function gotMessage(message, sender, sendResponse){
   var current_url = window.location.toString();
   console.log(current_url);
   var jobsite = '';
+
   if(current_url.startsWith('https://www.indeed.com/jobs?')){
     jobsite = 'indeed';
-    title = $("#vjs-jobtitle").text();
-    company = $("#vjs-cn").text();
-    location = $("#vjs-loc").text();
-    childrens = $("#vjs-desc").children();
-    for(var i=0; i<childrens.length; i++){
-      console.log(childrens);
-      job_description += childrens[i].innerText;
+    title = document.getElementById("vjs-jobtitle").innerText;
+    company = document.getElementById("vjs-cn").innerText;
+    location = document.getElementById("vjs-loc").innerText;
+    document.querySelectorAll('#vjs-desc > *').forEach((child) => {
+      job_description += child.innerText;
       job_description += '\n\n';
-    }
+    });
   }
+
   else if(current_url.startsWith('https://www.glassdoor.com/Job/')){
     console.log("glassdoor");
     jobsite = 'glassdoor';
-    company = $(".employerName").first().text();
-    title = $(".header h1").text();
-    location = $(".compInfo span").last().text();
-    childrens = $("#JobDescriptionContainer").children();
-    for(var i=0; i<childrens.length; i++){
-      console.log(childrens);
-      job_description += childrens[i].innerText;
+    company = document.querySelector('.employerName').innerText;
+    title = document.querySelector('.header h1').innerText;
+    location = document.querySelector('.compInfo').lastElementChild.innerText;
+    document.querySelectorAll('#JobDescriptionContainer > *').forEach((child) => {
+      job_description += child.innerText;
       job_description += '\n\n';
-    }
+    });
   }
 
   var response = {
