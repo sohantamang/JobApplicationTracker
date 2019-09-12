@@ -1,6 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Job Application",
+  "description": "Downloads job descriptions from popular pages to txt file.",
   "version": "1.0",
   "permissions": ["downloads", "storage"],
   "content_scripts": [
