@@ -22,7 +22,7 @@ function gotMessage(message, sender, sendResponse){
     job_info.jobsite = 'indeed';
     job_info.title = document.getElementById("vjs-jobtitle").innerText;
     job_info.company = document.getElementById("vjs-cn").innerText;
-    job_info.location = document.getElementById("vjs-loc").innerText;
+    job_info.location = document.getElementById("vjs-loc").innerText.slice(3);// - Atlanta
     document.querySelectorAll('#vjs-desc > *').forEach((child) => {
       job_info.description += child.innerText;
       job_info.description += '\n\n';
@@ -41,7 +41,7 @@ function gotMessage(message, sender, sendResponse){
     });
   }
 
-  console.log(response);
-  if(job_description !== '')
-    chrome.runtime.sendMessage(response);
+  console.log(job_info);
+  if(job_info.description !== '')
+    chrome.runtime.sendMessage(job_info);
 }
