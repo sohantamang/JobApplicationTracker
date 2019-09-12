@@ -1,19 +1,14 @@
-console.log("Background script run");
+'use strict';
+
+console.log('Background script');
 
 chrome.browserAction.onClicked.addListener(buttonClicked);
 chrome.runtime.onMessage.addListener(gotMessage);
 
-//require 'strict';
-
-console.log("Job to txt");
-
 
 function buttonClicked(tab) {
-
-  console.log(tab);
-  let msg = {
-    txt: "hello"
-  }
+  console.log('Extension clicked');
+  let msg = { txt: 'initiated' };
   chrome.tabs.sendMessage(tab.id, msg);
 }
 
@@ -30,7 +25,6 @@ function gotMessage(message, sender, sendResponse){
   var file_name = message.company + '-' + time +'.txt';
   chrome.downloads.download({
     url: url,
-    filename: 'job-applications/' + file_name // Optional
+    filename: 'job-applications/' + file_name
   });
 }
-//message.title,'\n', message.company,'\n', message.location, '\n', '\n','\n', message.description
